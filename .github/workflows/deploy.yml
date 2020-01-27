@@ -1,0 +1,17 @@
+name: Deploy
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build Page
+        id: build
+        run: |
+          cd ./build && npm install && cd ../
+          npm install
+          npm run build --if-present

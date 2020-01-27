@@ -16,7 +16,6 @@ jobs:
         GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
     - name: Build Page
       id: build
-      if: ${{ steps.autotagger.outputs.tagsha }} != ''
       run: |
         cd ./build && npm install && cd ../
         npm install

@@ -1,4 +1,4 @@
-name: Deply
+name: Tag
 
 on:
   push:

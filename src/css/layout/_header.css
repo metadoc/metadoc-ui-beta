@@ -1,0 +1,60 @@
+& > header {
+  border-bottom: var(--home-header-border);
+
+  & .width.constraint {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  & h1 {
+    flex: 1 0 16.18%;
+    margin-right: var(--inline-block-padding-x);
+  }
+
+  & .search {
+    flex: 1 1 auto;
+
+    & .input-wrapper {
+      box-shadow: none;
+    }
+  }
+
+  & .menu {
+    flex: 1 0 16.18%;
+    display: flex;
+    justify-content: flex-end;
+    margin-left: var(--inline-block-padding-x);
+
+    & button,
+    & .button {
+      margin-left: var(--inline-block-padding-x);
+      color: var(--header-button-text-color);
+
+      background: var(--header-button-bg-color);
+      box-shadow: var(--header-button-box-shadow);
+
+      &:hover {
+        background: var(--header-button-hover-bg-color);
+        box-shadow: var(--header-button-hover-box-shadow);
+      }
+
+      &:active {
+        background: var(--header-button-active-bg-color);
+        box-shadow: var(--header-button-active-box-shadow);
+      }
+
+      &.bare {
+        box-shadow: none;
+
+        &:hover {
+          background: transparent;
+        }
+
+        &:active {
+          background: transparent;
+          color: var(--header-button-hover-bg-color);
+        }
+      }
+    }
+  }
+}

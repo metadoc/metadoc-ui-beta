@@ -1,0 +1,22 @@
+{
+  "name": "metadoc-ui-beta",
+  "version": "0.0.2-beta.1",
+  "description": "Temp site for metadoc",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd ./build && npm run build",
+    "build:dev": "cd ./build && npm run build:dev",
+    "setup": "npm install && cd build && npm install && cd .. && cd src && npm install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coreybutler/metadoc-ui-beta.git"
+  },
+  "author": "Author.io",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coreybutler/metadoc-ui-beta/issues"
+  },
+  "homepage": "https://github.com/coreybutler/metadoc-ui-beta#readme"
+}

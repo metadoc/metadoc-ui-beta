@@ -1,0 +1,292 @@
+custom-properties {
+	/* COLORS *******************************************************************/
+	--white:       #FFFFFF;
+
+	--grey-0:      #F3F3F3;
+	--grey-1:      #E6E6E0;
+	--grey-2:      #D3D3D0;
+	--grey-3:      #959593;
+	--grey-4:      #777772;
+	--grey-5:      #595959; /* TEXT */
+	--grey-6:      #424246;
+
+	--black:       #21221E;
+
+	--red:         #DB3A2E;
+	--red-dark:    #A72A24;
+	--prune:       #7A241E;
+
+	--green-light: #869F1E;
+	--green:       #6A7F15;
+	--green-dark:  #4D6010;
+
+	--blue:        #0C4FCB; /* AAA */
+	--blue-dark:   #0B3B99;
+	--blue-ikb:    #002FA7;
+
+	--yellow:      #F6CE60;
+	--goldenrod:   #BB8E02;
+
+	--sunset:      #FB624E;
+	--apricot:     #FCC7B4;
+
+	--azure-light: #2399F8;
+	--azure:       #007ACD;
+	--azure-dark:  #005C9A;
+
+
+	/* TEXT *********************************************************************/
+
+	--font-family:                               -apple-system, BlinkMacSystemFont, 'Avenir Next', Avenir, Helvetica, Arial, sans-serif;
+	--text-color:                                var(--grey-5);
+
+	/* LAYOUT *******************************************************************/
+
+	--default-border-radius:                     .236em;
+
+	/* COMPONENTS ***************************************************************/
+
+	--anchor-color:                              var(--blue);
+	--anchor-hover-color:                        var(--azure-light);
+	--anchor-active-color:                       var(--blue-dark);
+	--anchor-disabled-color:                     var(--grey-2);
+
+	--button-bg-color:                           var(--azure);
+	--button-hover-bg-color:                     var(--azure-light);
+	--button-active-bg-color:                    var(--azure-dark);
+	--button-text-color:                         var(--white);
+	--button-border-radius:                      var(--default-border-radius);
+
+	--input-bg-color:                            var(--white);
+	--input-box-shadow:                          inset 0 0 0 1px var(--grey-1);
+	--input-border-radius:                       3px;
+	--input-text-color:                          var(--text-color);
+	--input-placeholder-color:                   var(--grey-3);
+	--input-icon-color:                          var(--input-placeholder-color);
+	--input-focus-bg-color:                      var(--input-bg-color);
+	--input-focus-icon-color:                    var(--azure);
+	--input-focus-box-shadow:                    inset 0 0 0 1px var(--azure);
+	--input-text-color:                          var(--text-color);
+	--input-placeholder-color:                   var(--grey-3);
+
+	/* SHARED *******************************************************************/
+
+	--root-bg-color:                             var(--white);
+
+	--header-bg-color:                           var(--blue);
+	--header-text-color:                         var(--white);
+
+	--header-button-text-color:                  var(--white);
+	--header-button-bg-color:                    transparent;
+	--header-button-hover-bg-color:              var(--azure-light);
+	--header-button-active-bg-color:             var(--azure);
+	--header-button-box-shadow:                  inset 0 0 0 1px var(--azure-light);
+	--header-button-hover-box-shadow:            none;
+	--header-button-active-box-shadow:           none;
+
+	--footer-bg-color:                           var(--white);
+  --footer-border-color:                       var(--grey-0);
+
+	/* HOME PAGE ****************************************************************/
+
+	--home-header-border:                        1px solid var(--blue-dark);
+
+	/* APP **********************************************************************/
+
+	--app-header-input-bg-color:                 var(--blue-dark);
+	--app-header-input-text-color:               var(--input-text-color);
+	--app-header-input-placeholder-color:        var(--white);
+	--app-header-input-focus-bg-color:           var(--input-bg-color);
+	--app-header-input-focus-box-shadow:         none;
+	--app-header-input-focus-icon-color:         var(--black);
+	--app-header-input-focus-placeholder-color:  var(--input-placeholder-color);
+
+	--pane-border-width:                         1px;
+	--pane-border-style:                         solid;
+	--pane-border-color:                         var(--grey-1);
+	--pane-border:                               var(--pane-border-width)
+	                                             var(--pane-border-style)
+																			         var(--pane-border-color);
+
+	--app-header-secondary-bg-color:             transparent;
+	--app-header-secondary-border:               var(--pane-border);
+
+	--app-sidebar-width:                         16.18em;
+	--app-sidebar-button-hover-bg-color:         var(--grey-0);
+	--app-sidebar-button-active-bg-color:        var(--grey-1);
+
+	/* --app-sidebar-link-border-color:     var(--grey-0);
+	--app-sidebar-link-hover-bg-color:   var(--grey-0);
+	--app-sidebar-link-hover-text-color: var(--black); */
+}
+
+components {
+	anchor {
+		@state initial {
+			color: var(--anchor-color);
+			text-decoration: underline;
+		}
+
+		@state hover {
+			color: var(--anchor-hover-color);
+		}
+
+		@state active {
+			color: var(--anchor-active-color);
+		}
+
+		@state disabled {
+			color: var(--anchor-disabled-color);
+			text-decoration: none;
+		}
+	}
+
+	anchor-button {
+		@state initial {
+			background: var(--blue);
+			border-radius: .236em;
+			color: white;
+
+			& .icon {
+				stroke: currentColor;
+			}
+
+			& .test {
+				padding: .5em;
+				background: green;
+
+				& .test {
+					background: red;
+
+					& .test {
+						background: blue;
+					}
+				}
+			}
+		}
+
+		@state hover {
+			background: color-mod(var(--blue) lightness(55%));
+		}
+
+		@state active {
+			background: color-mod(var(--blue) lightness(44%));
+		}
+
+		@state disabled {
+			opacity: .382;
+		}
+	}
+
+	button {
+		@state initial {
+			display: inline-flex;
+      justify-content: center;
+      align-items: center;
+			padding: var(--inline-block-padding-y) var(--inline-block-padding-x);
+      vertical-align: middle;
+      text-align: center;
+      cursor: pointer;
+
+			background: var(--button-bg-color);
+			border-radius: var(--button-border-radius);
+			color: var(--button-text-color);
+
+			& svg.icon {
+				stroke: currentColor;
+			}
+		}
+
+		@state hover {
+			background: var(--button-hover-bg-color);
+		}
+
+		@state active {
+			background: var(--button-active-bg-color);
+		}
+
+		@state disabled {
+			opacity: .382;
+		}
+
+		@state focus {
+			outline: 0;
+		}
+	}
+
+	table {
+		@state initial {
+			border-collapse: separate;
+			border-spacing: .382em 0;
+
+			caption {
+				font-weight: 700;
+			}
+
+			thead {
+				position: sticky;
+				top: 0;
+
+				border-bottom: 3px solid var(--grey-1);
+				box-shadow: 0 3px 0 0 var(--grey-1);
+			}
+
+			tfoot {
+				border-top: 3px solid var(--grey-1);
+			}
+
+			tbody tr td {
+				border-bottom: 1px solid var(--grey-1);
+			}
+
+			tbody tr:last-child td {
+				border-bottom: 0;
+			}
+		}
+	}
+
+	tag {
+		@state initial {
+			background: var(--green);
+			border-radius: .236em;
+			color: white;
+
+			& svg.icon {
+				stroke: currentColor;
+			}
+		}
+	}
+
+	input {
+		@state initial {
+			margin-top: 0;
+			box-shadow: var(--input-box-shadow);
+			border-radius: var(--input-border-radius);
+		}
+
+		@state focus {
+			outline: 0;
+			box-shadow: var(--input-focus-box-shadow);
+		}
+	}
+
+	textarea {
+		@state initial {
+			box-shadow: var(--input-box-shadow);
+			border-radius: var(--input-border-radius);
+		}
+
+		@state focus {
+			outline: 0;
+			box-shadow: var(--input-focus-box-shadow);
+		}
+	}
+
+	author-control {
+		@state initial {}
+
+		@state disabled {
+			opacity: .382;
+		}
+	}
+}

@@ -15,13 +15,3 @@ jobs:
           cd ./build && npm install && cd ../
           npm install
           npm run build --if-present
-      - name: Deploy to Github Pages
-        if: success()
-        uses: crazy-max/ghaction-github-pages@v1
-        with:
-          target_branch: public
-          build_dir: dist
-          keep_history: true
-          fqdn: beta.metadoc.io
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

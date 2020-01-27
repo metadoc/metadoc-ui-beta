@@ -11,12 +11,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: butlerlogic/action-autotag@stable
-      id: tag
+      id: autotagger
       with:
         GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
     - name: Build Page
       id: build
-      if: ${{ steps.tag.outputs.tagsha != '' }}
+      if: ${{ steps.autotagger.outputs.tagsha }} != ''
       run: |
         cd ./build && npm install && cd ../
         npm install

@@ -25,6 +25,8 @@ class APIClient {
       measurementId: "G-W4YWGNRVCV"
     })
 
+    firebase.analytics()
+
     firebase.auth().onAuthStateChanged(user => {
       NGN.INFO('AUTH STATE CHANGED')
 

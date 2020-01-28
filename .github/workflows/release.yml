@@ -16,12 +16,13 @@ jobs:
         GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
     - name: Build Page
       id: build
+      if: steps.autotagger.outputs.tagname != ''
       run: |
         cd ./build && npm install && cd ../
         npm install
         npm run build --if-present
     - name: Deploy to Github Pages
-      if: success()
+      if: steps.autotagger.outputs.tagname != ''
       uses: crazy-max/ghaction-github-pages@v1
       with:
         target_branch: gh-pages

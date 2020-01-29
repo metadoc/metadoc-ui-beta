@@ -11,13 +11,13 @@ class Builder extends ProductionLine {
     this.copyToOutput(this.assets[0], cb)
   }
 
-  copyLibs (cb) {
-    this.copyToOutput(path.join(this.source, 'lib'), cb)
-  }
+  // copyLibs (cb) {
+  //   this.copyToOutput(path.join(this.source, 'lib'), cb)
+  // }
 
-  copyCustomElements (cb) {
-    this.copyToOutput(path.join(this.source, 'custom-elements'), cb)
-  }
+  // copyCustomElements (cb) {
+  //   this.copyToOutput(path.join(this.source, 'custom-elements'), cb)
+  // }
 
   processHTML (cb) {
     let queue = new this.TaskRunner()
@@ -106,8 +106,8 @@ class Builder extends ProductionLine {
 
     this.clean()
     this.addTask('Copy Assets', this.copyAssets.bind(this))
-    this.addTask('Copy Libraries', this.copyLibs.bind(this))
-    this.addTask('Copy Custom Elements', this.copyCustomElements.bind(this))
+    // this.addTask('Copy Libraries', this.copyLibs.bind(this))
+    // this.addTask('Copy Custom Elements', this.copyCustomElements.bind(this))
     this.addTask('Process HTML', this.processHTML.bind(this))
     this.addTask('Process CSS', this.processCSS.bind(this, !devMode))
     this.addTask('Process JavaScript', this.processJS.bind(this, !devMode))

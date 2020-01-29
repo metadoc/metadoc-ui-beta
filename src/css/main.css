@@ -2,13 +2,15 @@
 @chassis include all;
 
 body.metadoc {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  overflow: hidden;
-  background: var(--root-bg-color);
+  & .text-bold {
+    font-weight: bold;
+  }
 
-  /* @chassis import dir(components); */
+  /* & .width.constraint {
+    @chassis vp-width > medium {
+      padding: 0;
+    }
+  } */
 
   & main {
     flex: 1 0 auto;
@@ -17,4 +19,6 @@ body.metadoc {
 
     @chassis import dir(layout);
   }
+
+  @chassis import dir(components);
 }

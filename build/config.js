@@ -2,13 +2,13 @@ module.exports = {
   chassis: {
     layout: {
       minWidth: 320,
-      maxWidth: 3840
+      maxWidth: 800
     },
 
     theme: 'themes/default.theme',
 
     typography: {
-      baseFontSize: 12
+      baseFontSize: 15
     }
   }
 }

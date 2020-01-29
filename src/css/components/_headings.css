@@ -1,0 +1,26 @@
+& h1,
+& h2,
+& h3,
+& h4 {
+  font-weight: bold;
+  color: var(--black);
+}
+
+& .logo {
+  &.authorio {
+    font-family: itc-avant-garde-gothic-pro, sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    text-transform: lowercase;
+  }
+
+  &.metadoc {
+    /* font-family: 'Phi Sans'; */
+
+    /* & author-icon {
+      height: 1.618em;
+      width: 1.618em;
+      margin: 0 .618em .236em 0;
+    } */
+  }
+}

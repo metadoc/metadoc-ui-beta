@@ -1,0 +1,11 @@
+& h1,
+& h2 {
+  &.icon {
+    display: flex;
+    align-items: center;
+
+    & author-icon {
+      @chassis apply inline-block margin-right;
+    }
+  }
+}

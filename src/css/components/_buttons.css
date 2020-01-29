@@ -1,0 +1,65 @@
+& button,
+& .button {
+  &.secondary {
+    @chassis new button {
+      @state initial {
+        @chassis apply inline-block padding;
+        background: transparent;
+        border-radius: var(--button-border-radius);
+        box-shadow: inset 0 0 0 1px var(--text-color);
+        color: var(--text-color);
+      }
+    }
+  }
+
+  &.bare {
+    @chassis new button {
+      @state initial {
+        background: transparent;
+        border-radius: .236em;
+        padding: 0;
+      }
+
+      @state hover {
+        color: var(--black);
+        text-decoration: underline;
+      }
+
+      @state active {
+        & svg.icon {
+          stroke: var(--black);
+        }
+      }
+    }
+  }
+
+  &.circle {
+    padding: .618em;
+    border-radius: 50%;
+
+    &.selected {
+      opacity: 1;
+      background: var(--azure);
+      pointer-events: none;
+
+      & svg {
+        stroke: var(--white);
+      }
+    }
+
+    &:hover {
+      background: var(--grey-0);
+    }
+
+    &:active {
+      background: var(--grey-1);
+    }
+  }
+
+  @chassis vp-width to medium {
+    & svg.icon {
+      width: 44px;
+      height: 44px;
+    }
+  }
+}

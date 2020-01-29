@@ -18,8 +18,6 @@
     <script defer src="https://cdn.jsdelivr.net/npm/@author.io/element-icon@1.1.0/dist/author-icon.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/@author.io/element-drawer@1.0.1/dist/author-drawer.min.js"></script>
 
-    <script defer src="assets/custom-elements/md-loader.js"></script>
-
     <script defer type="module" src="js/index.js"></script>
   </head>
 
@@ -27,42 +25,132 @@
     <main>
       <header>
         <div class="width constraint">
-          <h1 class="metadoc logo">
+          <p class="coming-soon">
+            Coming Soon
+          </p>
+
+          <h1 class="metadoc logo icon">
             <author-icon src="assets/logo2.svg"></author-icon>
             Metadoc
           </h1>
 
-          <div class="search">
-            <author-control>
-              <div class="input-wrapper">
-                <author-icon src="assets/icons/search.svg"></author-icon>
-                <input type="text" placeholder="Search Packages&hellip;">
-              </div>
-            </author-control>
-          </div>
-
-          <div class="menu">
-            <a class="bare log_in button" href="/login">Log In</a>
-            <a class="sign_up button" href="/signup">Sign Up</a>
-          </div>
+          <p>
+            A collaborative online documentation platform where developers can learn from each other by sharing inline notes, tips, and comments.
+          </p>
         </div>
       </header>
 
-      <div class="content">
-        <section class="hero">
-          <div class="width constraint">
-            <h2>
-              <span class="text-nowrap">All Your Docs</span> <span class="text-nowrap">Are Belong To Us</span>
-            </h2>
+      <section class="signup">
+        <div class="width constraint">
+          <p class="text-bold">
+            Sign up to be the first to hear about updates!
+          </p>
+
+          <div class="signup">
+            <author-control>
+              <div class="input-wrapper">
+                <author-icon src="assets/icons/mail.svg"></author-icon>
+                <input type="text" placeholder="Enter your email address">
+              </div>
+              <button class="submit">Stay Informed</button>
+            </author-control>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
+
+      <section class="features">
+        <div class="width constraint">
+          <div class="screenshot"></div>
+
+          <h2>
+            Documentation with Finesse
+          </h2>
+
+          <p>
+            Metadoc has been designed for the most powerful and flexible documentation experience possible. Here is a shortlist of cool features:
+          </p>
+
+          <ul>
+            <li>
+              <h3>
+                <author-icon src="assets/icons/bookmark.svg"></author-icon>
+                Bookmarks
+              </h3>
+
+              <p>
+                Save deep references to sections of documentation OR source code.
+              </p>
+            </li>
+            <li>
+              <h3>
+                <author-icon src="assets/icons/message-square.svg"></author-icon>
+                Notes
+              </h3>
+              <p>
+                Jot down your thoughts right in the documentation.
+              </p>
+            </li>
+            <li>
+              <h3>
+                <author-icon src="assets/icons/package.svg"></author-icon>
+                Custom Workspaces
+              </h3>
+              <p>
+                Keep all the documentation relevant to your workflow together in one place.
+              </p>
+            </li>
+            <li>
+              <h3>
+                <author-icon src="assets/icons/note.svg"></author-icon>
+                Scratch Pad
+              </h3>
+              <p>
+                Store snippets of documentation along with notes and bookmarks for later reference.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="collaborate">
+        <div class="width constraint">
+          <h2>Collaborate for Better Documentation</h2>
+
+          <ul>
+            <li>
+              Share Bookmarks and Notes with package authors and developers.
+            </li>
+            <li>
+              Directly reference Github issues
+            </li>
+            <li>
+              Reference parts of documentation or source code from one package inside another
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="go">
+        <div class="width constraint">
+          <h2 class="icon">
+            Starting from <author-icon src="assets/go-logo-blue.svg"></author-icon>
+            <!-- <author-icon src="assets/go.svg"></author-icon> -->
+          </h2>
+
+          <p>
+            Metadoc v1.0 will be focused on the Go Programming Language as a proof of concept. After that it will expand to support more languages, including JavaScript.
+          </p>
+        </div>
+      </section>
 
       <footer>
         <div class="width constraint">
-
+          <div class="copyright">
+            Copyright &copy; <span class="year"></span> Author
+          </div>
         </div>
       </footer>
     </main>
+
   </body>
 </html>

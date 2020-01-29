@@ -1,0 +1,11 @@
+& .tag {
+  &code {
+    @chassis new tag {
+      @state initial {
+        font-family: monospace;
+        background: var(--grey-0);
+        border-radius: var(--default-border-radius);
+      }
+    }
+  }
+}

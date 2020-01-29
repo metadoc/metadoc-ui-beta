@@ -1,60 +1,23 @@
 & > header {
-  border-bottom: var(--home-header-border);
+  padding-top: 3.82em;
 
-  & .width.constraint {
-    display: flex;
-    justify-content: space-between;
+  & .coming-soon {
+    @chassis font-size small;
+    font-weight: bold;
+    text-transform: uppercase;
   }
 
   & h1 {
-    flex: 1 0 16.18%;
-    margin-right: var(--inline-block-padding-x);
+    @chassis font-size largest;
+    color: var(--blue);
   }
 
-  & .search {
-    flex: 1 1 auto;
+  & author-control {
+    display: flex;
 
     & .input-wrapper {
-      box-shadow: none;
-    }
-  }
-
-  & .menu {
-    flex: 1 0 16.18%;
-    display: flex;
-    justify-content: flex-end;
-    margin-left: var(--inline-block-padding-x);
-
-    & button,
-    & .button {
-      margin-left: var(--inline-block-padding-x);
-      color: var(--header-button-text-color);
-
-      background: var(--header-button-bg-color);
-      box-shadow: var(--header-button-box-shadow);
-
-      &:hover {
-        background: var(--header-button-hover-bg-color);
-        box-shadow: var(--header-button-hover-box-shadow);
-      }
-
-      &:active {
-        background: var(--header-button-active-bg-color);
-        box-shadow: var(--header-button-active-box-shadow);
-      }
-
-      &.bare {
-        box-shadow: none;
-
-        &:hover {
-          background: transparent;
-        }
-
-        &:active {
-          background: transparent;
-          color: var(--header-button-hover-bg-color);
-        }
-      }
+      flex: 1;
+      @chassis apply inline-block margin-right;
     }
   }
 }

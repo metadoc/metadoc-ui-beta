@@ -21,6 +21,7 @@ jobs:
         cd ./build && npm install && cd ../
         npm install
         npm run build --if-present
+        echo beta.metadoc.io > ./dist/CNAME
     - name: Deploy
       if: steps.autotagger.outputs.tagname != ''
       env:

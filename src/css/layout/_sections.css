@@ -29,13 +29,24 @@
 
   &.features {
     & .screenshot {
-      height: 16.18em;
-      margin-bottom: 2.36em;
+      height: 23.6em;
+      margin-bottom: 3.82em;
+      overflow: hidden;
+
       background: url("../assets/screenshots/main.png");
       background-size: cover;
-      border: var(--pane-border);
+
+      box-shadow: 0.618em 0.618em 2.36em 0 rgba(0,0,0,.13);
       border-radius: var(--default-border-radius);
-      overflow: hidden;
+
+      /* & author-icon {
+        width: 100%;
+        height: auto;
+      }
+
+      @chassis vp-width > medium {
+        padding: 0;
+      } */
     }
 
     & ul {

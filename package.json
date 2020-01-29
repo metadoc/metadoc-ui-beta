@@ -1,6 +1,6 @@
 {
   "name": "metadoc-ui-beta",
-  "version": "0.0.2-beta.1",
+  "version": "0.0.2-beta.2",
   "description": "Temp site for metadoc",
   "main": "index.js",
   "scripts": {

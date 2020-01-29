@@ -1,6 +1,0 @@
-.*
-!.gitignore
-!.github
-node_modules
-*.log
-dist

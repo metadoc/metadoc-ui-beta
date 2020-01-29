@@ -1,4 +1,4 @@
-import NGN from '../../../../../Software/Libraries/NGN/ngn/test/.node/index.js'
+// import NGN from '../../../../../Software/Libraries/NGN/ngn/test/.node/index.js'
 
 if (!NGN.INFO) {
   NGN.INFO = console.log

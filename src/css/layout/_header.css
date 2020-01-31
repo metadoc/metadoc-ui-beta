@@ -1,5 +1,5 @@
 & > header {
-  padding-top: 3.82em;
+  padding: 3.82em 0;
 
   & .coming-soon {
     @chassis font-size small;
@@ -8,8 +8,13 @@
   }
 
   & h1 {
+    margin-bottom: 1rem;
     @chassis font-size largest;
     color: var(--blue);
+  }
+
+  & p:last-child {
+    margin: 0;
   }
 
   & author-control {

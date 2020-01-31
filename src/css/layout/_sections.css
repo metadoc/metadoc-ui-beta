@@ -1,4 +1,11 @@
 & section {
+  margin-bottom: 3.82em;
+
+  & h2 {
+    @chassis font-size larger;
+    color: var(--blue)
+  }
+
   & ul {
     @chassis apply inline-block padding-left;
     padding-right: calc(var(--svg-icon-height) + (2 * var(--inline-block-padding-x)));
@@ -12,41 +19,48 @@
 
   &.signup {
     margin-bottom: 3.82em;
+    padding: 2.36em 0;
+    background: var(--grey-0);
 
     & p:first-of-type {
+      color: var(--black);
       margin-bottom: 1em;
     }
 
     & author-control {
-      display: flex;
+      @chassis vp-width < medium {
+        & .input-wrapper {
+          margin-bottom: 1em;
+        }
 
-      & .input-wrapper {
-        flex: 1;
-        @chassis apply inline-block margin-right;
+        & button {
+          width: 100%;
+        }
+      }
+
+      @chassis vp-width > small {
+        display: flex;
+
+        & .input-wrapper {
+          flex: 1;
+          @chassis apply inline-block margin-right;
+        }
       }
     }
   }
 
   &.features {
     & .screenshot {
-      height: 23.6em;
-      margin-bottom: 3.82em;
+      margin-bottom: 2.36em;
       overflow: hidden;
-
-      background: url("../assets/screenshots/main.png");
-      background-size: cover;
 
       box-shadow: 0.618em 0.618em 2.36em 0 rgba(0,0,0,.13);
       border-radius: var(--default-border-radius);
 
-      /* & author-icon {
+      & img {
+        display: block;
         width: 100%;
-        height: auto;
       }
-
-      @chassis vp-width > medium {
-        padding: 0;
-      } */
     }
 
     & ul {

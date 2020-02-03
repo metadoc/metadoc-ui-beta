@@ -18,6 +18,7 @@
   }
 
   &.signup {
+    position: relative;
     margin-bottom: 3.82em;
     padding: 2.36em 0;
     background: var(--grey-0);
@@ -28,12 +29,45 @@
     }
 
     & author-control {
+      & button.submit {
+        position: relative;
+
+        & md-loader {
+          position: absolute;
+          display: none;
+
+          & .ring {
+            width: auto;
+            height: 100%;
+
+            & div {
+              width: 1em;
+              height: 1em;
+              border-width: .118em;
+              border-color: currentColor transparent transparent transparent;
+            }
+          }
+        }
+
+        &.loading {
+          pointer-events: none;
+
+          & .label {
+            visibility: hidden;
+          }
+
+          & md-loader {
+            display: flex;
+          }
+        }
+      }
+
       @chassis vp-width < medium {
         & .input-wrapper {
           margin-bottom: 1em;
         }
 
-        & button {
+        & button.submit {
           width: 100%;
         }
       }
@@ -44,6 +78,35 @@
         & .input-wrapper {
           flex: 1;
           @chassis apply inline-block margin-right;
+        }
+      }
+    }
+
+    & .result {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      & button.close {
+        position: absolute;
+        top: var(--inline-block-padding-x);
+        right: var(--inline-block-padding-x);
+      }
+
+      & p {
+        text-align: center;
+      }
+
+      & footer {
+        @chassis font-size small;
+        text-align: center;
+      }
+
+      &.registered {
+        & .email {
+          @chassis apply inline-block padding margin-bottom;
+          background: var(--white);
+          border-radius: var(--default-border-radius);
         }
       }
     }

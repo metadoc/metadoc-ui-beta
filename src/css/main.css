@@ -1,6 +1,8 @@
 @chassis init;
 @chassis include all;
 
+@chassis import animations;
+
 body.metadoc {
   & .text-bold {
     font-weight: bold;

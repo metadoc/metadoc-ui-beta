@@ -1,4 +1,9 @@
 & > footer {
   padding: 2.36em;
   background: var(--grey-0);
+
+  & nav {
+    margin: 0;
+    @chassis font-size small;
+  }
 }

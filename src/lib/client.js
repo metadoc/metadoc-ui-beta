@@ -74,8 +74,14 @@ class APIClient {
 
     NGN.BUS.emit('user.verifying')
     firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then(() => this.#user = firebase.auth().currentUser)
-      .catch(console.error)
+      .then(() => {
+        this.#user = firebase.auth().currentUser
+        callback(null, this.user)
+      })
+      .catch(err => {
+        console.error(err)
+        callback(err)
+      })
   }
 }
 

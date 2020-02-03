@@ -20,7 +20,7 @@
   & author-control {
     display: flex;
 
-    & .input-wrapper {
+    & .input .wrapper {
       flex: 1;
       @chassis apply inline-block margin-right;
     }

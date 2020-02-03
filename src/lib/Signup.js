@@ -13,8 +13,8 @@ const Signup = new JET.Interface({
 
   states: {
     idle: {
-      on () {
-        this.emit('render')
+      on (previous, error) {
+        this.emit('render', false, error)
       },
 
       transitions: {
@@ -28,6 +28,7 @@ const Signup = new JET.Interface({
       },
 
       transitions: {
+        TRYAGAIN: 'idle',
         DUPLICATE: 'duplicate',
         REGISTERED: 'registered'
       }
@@ -104,20 +105,40 @@ const Signup = new JET.Interface({
   on: {
     email: {
       submit (email) {
+//         if (!window.confirm(`
+// You will be signed up for Metadoc updates at the following email address:
+//
+//           ${email}
+//
+// Is this correct?
+// `)) {
+//           return
+//         }
+
         this.transition('REGISTER')
 
-        API.register(email, NGN.DATA.util.GUID(), (err, user) => {
-          if (err) {
-            switch (err.code) {
-              case 'auth/email-already-in-use':
-                this.transition('DUPLICATE', email)
-                break
-            }
+        NGN.NET.post({
+          url: 'https://us-central1-metadoc-4ebc3.cloudfunctions.net/api/user',
+          json: { email }
+        }, req => {
+          switch (req.status) {
+            case 400:
+            case 403: return this.transition('TRYAGAIN', req.responseText)
+            case 201:
+              API.register(email, NGN.DATA.util.GUID(), (err, user) => {
+                if (err) {
+                  switch (err.code) {
+                    case 'auth/email-already-in-use':
+                      this.transition('DUPLICATE', email)
+                      break
+                  }
 
-            return console.log(err)
+                  return console.log(err)
+                }
+
+                this.transition('REGISTERED', email)
+              })
           }
-
-          this.transition('REGISTERED', email)
         })
       }
     },
@@ -130,7 +151,7 @@ const Signup = new JET.Interface({
       }
     },
 
-    render (loading = false) {
+    render (loading = false, error) {
       let { submitDisabled } = this.properties
 
       this.renderHTML([
@@ -139,24 +160,34 @@ const Signup = new JET.Interface({
         ]],
 
         ['author-control', {
-          class: [{ disabled: loading }, 'email']
+          class: [{
+            disabled: loading,
+            error: !!error
+          }, 'email']
         }, [
-          ['div', { class: 'input-wrapper' }, [
-            ['author-icon', { src: 'assets/icons/mail.svg' }],
-            ['input', {
-              type: 'text',
-              placeholder: 'Enter your email address'
-            }, {
-              keydown: evt => {
-                if (evt.key !== 'Enter') {
-                  return
-                }
+          ['div', { class: 'input' }, [
+            ['div', { class: 'wrapper' }, [
+              ['author-icon', { src: 'assets/icons/mail.svg' }],
+              ['input', {
+                type: 'text',
+                placeholder: 'Enter your email address'
+              }, {
+                keydown: evt => {
+                  if (evt.key !== 'Enter') {
+                    return
+                  }
 
-                this.emit('email.submit', this.refs.emailControl.value)
-              },
+                  this.emit('email.submit', this.refs.emailControl.value)
+                },
 
-              input: evt => this.properties.submitDisabled = evt.target.value === '' || !evt.target.value
-            }]
+                input: evt => this.properties.submitDisabled = evt.target.value === '' || !evt.target.value
+              }]
+            ]],
+
+            !!error && ['div', { class: 'error' }, [
+              ['author-icon', { src: 'assets/icons/alert.svg' }],
+              ['span', { class: 'message' }, [error]]
+            ]]
           ]],
 
           ['button', {

@@ -68,6 +68,10 @@ custom-properties {
 	--input-focus-box-shadow:                    inset 0 0 0 1px var(--azure);
 	--input-text-color:                          var(--text-color);
 
+	--input-error-box-shadow:                    inset 0 0 0 1px var(--red);
+	--input-error-icon-color:                    var(--red);
+	--input-error-text-color:                    var(--red);
+
 	/* SHARED *******************************************************************/
 
 	--root-bg-color:                             var(--white);
@@ -283,6 +287,10 @@ components {
 
 	author-control {
 		@state initial {}
+
+		@state error {
+
+		}
 
 		@state disabled {
 			opacity: .382;

@@ -1,35 +1,78 @@
-& .input-wrapper {
+& author-control {
   display: flex;
-  align-items: center;
-  background: var(--input-bg-color);
-  box-shadow: var(--input-box-shadow);
-  border-radius: var(--input-border-radius);
+  align-items: flex-start;
 
-  & author-icon {
-    margin: 0 0 0 var(--inline-block-padding-x);
+  & .input {
+    & .error {
+      display: flex;
+      align-items: center;
+      @chassis apply inline-block padding-y padding-right;
+      @chassis font-size small;
+      color: var(--input-error-text-color);
 
-    & svg {
-      stroke: var(--input-icon-color);
+      & author-icon {
+        @chassis apply inline-block margin-right;
+      }
+    }
+
+    & .wrapper {
+      display: flex;
+      align-items: center;
+      background: var(--input-bg-color);
+      box-shadow: var(--input-box-shadow);
+      border-radius: var(--input-border-radius);
+
+      & author-icon {
+        margin: 0 0 0 var(--inline-block-padding-x);
+
+        & svg {
+          stroke: var(--input-icon-color);
+        }
+      }
+
+      & input {
+        background: none;
+        box-shadow: none;
+        border-radius: 0;
+        color: var(--input-text-color);
+
+        &::placeholder {
+          color: var(--input-placeholder-color);
+        }
+      }
+
+      &:focus-within {
+        background: var(--input-focus-bg-color);
+        box-shadow: var(--input-focus-box-shadow);
+
+        & author-icon svg {
+          stroke: var(--input-focus-icon-color);
+        }
+      }
     }
   }
 
-  & input {
-    background: none;
-    box-shadow: none;
-    border-radius: 0;
-    color: var(--input-text-color);
+  &.error {
+    & .input .wrapper {
+      box-shadow: var(--input-error-box-shadow);
 
-    &::placeholder {
-      color: var(--input-placeholder-color);
-    }
-  }
+      & author-icon {
+        & svg {
+          stroke: var(--input-error-icon-color);
+        }
+      }
 
-  &:focus-within {
-    background: var(--input-focus-bg-color);
-    box-shadow: var(--input-focus-box-shadow);
+      & input {
+        color: var(--input-error-text-color);
+      }
 
-    & author-icon svg {
-      stroke: var(--input-focus-icon-color);
+      &:focus-within {
+        box-shadow: var(--input-error-box-shadow);
+
+        & author-icon svg {
+          stroke: var(--input-error-icon-color);
+        }
+      }
     }
   }
 }

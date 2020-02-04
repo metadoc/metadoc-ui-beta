@@ -32,3 +32,44 @@ jobs:
       run: |
         wget https://raw.githubusercontent.com/peaceiris/actions-gh-pages/v2/entrypoint.sh
         bash ./entrypoint.sh
+
+    - name: Rollback
+      if: failure()
+      uses: author/action-rollback@stable
+      with:
+        tag: ${{ steps.autotagger.outputs.tagname }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Success Notification
+      if: success() && steps.autotagger.outputs.tagname != ''
+      uses: rtCamp/action-slack-notify@v2.0.0
+      env:
+        SLACK_CHANNEL: metadoc
+        SLACK_COLOR: '#27ae60'
+        SLACK_ICON: https://raw.githubusercontent.com/coreybutler/staticassets/master/images/logos/metadoc.png?size=48
+        SLACK_MESSAGE: 'https://beta.metadoc.io v${{ steps.autotagger.outputs.version }} released by ${{ github.actor }}. :rocket:'
+        SLACK_TITLE: beta.metadoc.io v${{ steps.autotagger.outputs.version }} Published
+        SLACK_USERNAME: Metadoc
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+    - name: Failure Notification
+      if: failure() && steps.autotagger.outputs.tagname != '' && env.IS_PRERELEASE == ''
+      uses: rtCamp/action-slack-notify@v2.0.0
+      env:
+        SLACK_CHANNEL: metadoc
+        SLACK_COLOR: '#c0392b'
+        SLACK_ICON: https://raw.githubusercontent.com/coreybutler/staticassets/master/images/logos/metadoc.png?size=48
+        SLACK_MESSAGE: 'https://beta.metadoc.io v${{ steps.autotagger.outputs.version }} failed to publish to Github Pages. A rollback was attempted. :heavy_multiplication_x:'
+        SLACK_TITLE: beta.metadoc.io v${{ steps.autotagger.outputs.version }} Publish Failure
+        SLACK_USERNAME: Metadoc
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+    - name: Inaction Notification
+      if: steps.autotagger.outputs.tagname == ''
+      uses: rtCamp/action-slack-notify@v2.0.0
+      env:
+        SLACK_CHANNEL: metadoc
+        SLACK_COLOR: '#999999'
+        SLACK_ICON: https://raw.githubusercontent.com/coreybutler/staticassets/master/images/logos/metadoc.png?size=48
+        SLACK_MESSAGE: '${{ github.actor }} committed code: ${{ github.ref }} :file_cabinet:'
+        SLACK_TITLE: beta.metadoc.io Published
+        SLACK_USERNAME: Metadoc
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}

@@ -41,15 +41,6 @@ const Signup = new JET.Interface({
       on (previous, email) {
         this.replaceHTML([
           ['div', { class: 'registered result' }, [
-            // ['button', { class: 'bare close icon' }, {
-            //   click: evt => {
-            //     evt.preventDefault()
-            //     this.self.classList.add('hidden')
-            //   }
-            // }, [
-            //   ['author-icon', { src: 'assets/icons/close.svg' }]
-            // ]],
-
             ['p', { class: 'text-bold' }, [
               'Thank you for registering! You will receive updates at:'
             ]],

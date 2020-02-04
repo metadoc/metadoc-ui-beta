@@ -1,6 +1,6 @@
 {
   "name": "metadoc-ui-beta",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Signup site for Metadoc",
   "main": "index.js",
   "scripts": {

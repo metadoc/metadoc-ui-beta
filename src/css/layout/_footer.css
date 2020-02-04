@@ -1,9 +1,19 @@
 & > footer {
-  padding: 2.36em;
+  padding: 2.36em 0;
   background: var(--grey-0);
+
+  & .width.constraint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @chassis vp-width > small {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
 
   & nav {
     margin: 0;
-    @chassis font-size small;
   }
 }

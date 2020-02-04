@@ -1,7 +1,7 @@
 {
   "name": "metadoc-ui-beta",
-  "version": "0.0.2-beta.7",
-  "description": "Temp site for metadoc",
+  "version": "1.0.0",
+  "description": "Signup site for Metadoc",
   "main": "index.js",
   "scripts": {
     "build": "cd ./build && npm run build",

@@ -18,7 +18,7 @@ const Signup = new JET.Interface({
       },
 
       transitions: {
-        REGISTER: 'loading'
+        LOADING: 'loading'
       }
     },
 
@@ -29,39 +29,11 @@ const Signup = new JET.Interface({
 
       transitions: {
         TRYAGAIN: 'idle',
-        DUPLICATE: 'duplicate',
-        REGISTERED: 'registered'
+        SUCCESS: 'success'
       }
     },
 
-    duplicate: {
-      transitions: {
-        TRYAGAIN: 'idle'
-      },
-
-      on (previous, email) {
-        this.replaceHTML([
-          ['div', { class: 'duplicate result' }, [
-            ['p', { class: 'text-bold' }, [
-              `${email} is already signed up for updates!`
-            ]],
-
-            ['footer', [
-              ['a', { href: '#' }, {
-                click: evt => {
-                  evt.preventDefault()
-                  this.transition('TRYAGAIN')
-                }
-              }, [
-                'Sign up with another email address'
-              ]]
-            ]]
-          ]]
-        ])
-      }
-    },
-
-    registered: {
+    success: {
       transitions: {
         TRYAGAIN: 'idle'
       },
@@ -85,7 +57,6 @@ const Signup = new JET.Interface({
             ['div', { class: 'email' }, [email]],
 
             ['footer', [
-              'Wrong email? ',
               ['a', {
                 class: 'reset',
                 href: '#'
@@ -94,7 +65,7 @@ const Signup = new JET.Interface({
                   evt.preventDefault()
                   this.transition('TRYAGAIN')
                 }
-              }, ['Try Again']]
+              }, ['Register another email address']]
             ]]
           ]]
         ])
@@ -105,40 +76,14 @@ const Signup = new JET.Interface({
   on: {
     email: {
       submit (email) {
-//         if (!window.confirm(`
-// You will be signed up for Metadoc updates at the following email address:
-//
-//           ${email}
-//
-// Is this correct?
-// `)) {
-//           return
-//         }
+        this.transition('LOADING')
 
-        this.transition('REGISTER')
-
-        NGN.NET.post({
-          url: 'https://us-central1-metadoc-4ebc3.cloudfunctions.net/api/user',
-          json: { email }
-        }, req => {
-          switch (req.status) {
-            case 400:
-            case 403: return this.transition('TRYAGAIN', req.responseText)
-            case 201:
-              API.register(email, NGN.DATA.util.GUID(), (err, user) => {
-                if (err) {
-                  switch (err.code) {
-                    case 'auth/email-already-in-use':
-                      this.transition('DUPLICATE', email)
-                      break
-                  }
-
-                  return console.log(err)
-                }
-
-                this.transition('REGISTERED', email)
-              })
+        API.register(email, err => {
+          if (err) {
+            return this.transition('TRYAGAIN', err)
           }
+
+          this.transition('SUCCESS', email)
         })
       }
     },

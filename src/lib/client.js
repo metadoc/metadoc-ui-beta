@@ -9,6 +9,7 @@ class APIClient {
   #referrer = null
   #db = null
   #uid = null
+  #root = 'https://us-central1-metadoc-4ebc3.cloudfunctions.net/api'
 
   constructor () {
     this.fireAuthEvent = true
@@ -67,21 +68,29 @@ class APIClient {
     return this.#user !== null
   }
 
-  register (email, password, callback) {
+  register (email, callback) {
+    const EMAIL_PATTERN = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/i
+
+    if (!EMAIL_PATTERN.test(email)) {
+      return callback('Invalid email address format')
+    }
+
     if (typeof callback !== 'function') {
       callback = e => { throw new e }
     }
 
     NGN.BUS.emit('user.verifying')
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then(() => {
-        this.#user = firebase.auth().currentUser
-        callback(null, this.user)
-      })
-      .catch(err => {
-        console.error(err)
-        callback(err)
-      })
+
+    NGN.NET.post({
+      url: `${this.#root}/user/register`,
+      json: { email }
+    }, req => {
+      switch (req.status) {
+        case 201: return callback()
+        case 500: return alert('An error occurred. Please refresh the page and try again.')
+        default: return callback(req.responseText)
+      }
+    })
   }
 }
 

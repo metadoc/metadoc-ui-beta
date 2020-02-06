@@ -1,11 +1,18 @@
 & > header {
-  padding: 3.82em 0;
+  padding: 3.82em 0 2.36em;
 
   & .coming-soon {
     @chassis font-size small;
     font-weight: bold;
     text-transform: uppercase;
   }
+
+  /* & .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @chassis apply inline-block margin-bottom;
+  } */
 
   & h1 {
     margin-bottom: 1rem;

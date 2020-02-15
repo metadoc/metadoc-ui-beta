@@ -5,6 +5,8 @@ const Chassis = require('@chassis/core')
 const Babel = require('@babel/core')
 const Terser = require('terser')
 const CONFIG = require('./config.js')
+const fs = require('fs')
+const pkg = require('../package.json')
 
 class Builder extends ProductionLine {
   copyAssets (cb) {
@@ -28,8 +30,18 @@ class Builder extends ProductionLine {
       })
     })
 
+    queue.add('Apply version annotation to HTML', next => {
+      let subqueue = new this.TaskRunner()
+      this.walk(path.join(this.output, '**/*.html')).forEach(filePath => {
+        subqueue.add(cont => fs.appendFile(filePath, `\n<!-- ${pkg.name} v${pkg.version}, built on ${new Date().toString()} -->`, cont))
+      })
+
+      subqueue.on('complete', next)
+      subqueue.run() // run in parallel
+    })
+
     queue.on('complete', cb)
-    queue.run()
+    queue.run(true)
   }
 
   processCSS (minify, cb) {
@@ -53,7 +65,7 @@ class Builder extends ProductionLine {
             return next()
           }
 
-          if (!!processed.sourceMap) {
+          if (processed.sourceMap) {
             this.writeFileSync(`${this.outputDirectory(filePath)}.map`, processed.sourceMap)
           }
 

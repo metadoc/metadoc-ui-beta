@@ -1,1 +1,38 @@
-class MDLoaderElement extends(AuthorBaseElement(HTMLElement)){constructor(){super('\n      <template>\n        <style>\n          :host {\n            display: inline-flex;\n          }\n\n          :host *,\n          :host *:before,\n          :host *:after {\n            box-sizing: border-box;\n          }\n        </style>\n\n        <div id="loader">\n          <slot></slot>\n        </div>\n      </template>\n    '),this.UTIL.registerListeners(this,{connected:()=>{var e=document.createElement("div");e.classList.add("ring");for(var n=0;n<12;n++)e.appendChild(document.createElement("div"));this.appendChild(e)}})}}customElements.define("md-loader",MDLoaderElement);
+class MDLoaderElement extends AuthorBaseElement(HTMLElement) {
+  constructor () {
+    super(`
+      <template>
+        <style>
+          :host {
+            display: inline-flex;
+          }
+
+          :host *,
+          :host *:before,
+          :host *:after {
+            box-sizing: border-box;
+          }
+        </style>
+
+        <div id="loader">
+          <slot></slot>
+        </div>
+      </template>
+    `)
+
+    this.UTIL.registerListeners(this, {
+      connected: () => {
+        let ring = document.createElement('div')
+        ring.classList.add('ring')
+
+        for (var i = 0; i < 12; i++) {
+          ring.appendChild(document.createElement('div'))
+        }
+
+        this.appendChild(ring)
+      }
+    })
+  }
+}
+
+customElements.define('md-loader', MDLoaderElement)
